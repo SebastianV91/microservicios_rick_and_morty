@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ApplicationConfig {
+public class ApplicationConfigLocation {
 
     @Bean
     public LocationService locationService(LocationRepositoryPort locationRepositoryPort, GetAdditionalLocationInfoUseCase getAdditionalLocationInfoUseCase){
