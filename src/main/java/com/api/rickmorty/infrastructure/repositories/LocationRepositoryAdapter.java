@@ -41,8 +41,8 @@ public class LocationRepositoryAdapter implements LocationRepositoryPort {
     public Optional<Location> update(Location location) {
         if(locationRepository.existsById(location.getId())){
             LocationEntity locationEntity = LocationEntity.fromDomainModel(location);
-            LocationEntity updatedlocationEntity = locationRepository.save(locationEntity);
-            return Optional.of(updatedlocationEntity.toDomainModel());
+            LocationEntity updatedLocationEntity = locationRepository.save(locationEntity);
+            return Optional.of(updatedLocationEntity.toDomainModel());
         }
         return Optional.empty();
     }
