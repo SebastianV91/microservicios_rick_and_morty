@@ -1,13 +1,13 @@
-version: '3'
+version: '3.8'
 
 services:
   rickmorty:
-    build: rickmortybd
+    build: rickmorty
     mem_limit: 512m
     ports:
-      - "8080:8080"
+      - "8084:8084"
     environment:
-      DB_URL: jdbc:mysql://rick_morty:3306/rickmortybd
+      DB_URL: jdbc:mysql://rick_morty:3306/rickmortybd?createDatabaseIfNotExist=true&serverTimezone=UTC
       DB_USER_NAME: root
       DB_PASSWORD: 12345678
     restart: always
