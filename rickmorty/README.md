@@ -10,8 +10,8 @@ Corriendo la aplicación localmente
 
 Ejecutar estos comandos de docker, para su despliegue local.
 
-docker build . -t docker-whale
-docker-compose-up
+docker-compose build
+docker-compose up
 
 Propiedades de la aplicación
 
