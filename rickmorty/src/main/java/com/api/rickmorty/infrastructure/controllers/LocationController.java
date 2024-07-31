@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/locations")
 public class LocationController {
 
     private final LocationService locationService;
@@ -19,33 +18,33 @@ public class LocationController {
         this.locationService = locationService;
     }
 
-    @PostMapping("/")
+    @PostMapping("/locations")
     public ResponseEntity<Location> createLocation(@RequestBody Location location){
         Location createdLocation = locationService.createLocation(location);
         return new ResponseEntity<>(createdLocation, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/locations/{id}")
     public ResponseEntity<Location> getLocationById(@PathVariable Integer id){
         return locationService.getLocationById(id)
                 .map(location -> new ResponseEntity<>(location, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/getAllLocations")
+    @GetMapping("/locations")
     public ResponseEntity<List<Location>> getAllLocation(){
         List<Location> location = locationService.getAllLocations();
         return new ResponseEntity<>(location, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/locations/{id}")
     public ResponseEntity<Location> updateLocation(@PathVariable Integer id, @RequestBody Location updatedLocation){
         return locationService.updateLocation(id, updatedLocation)
                 .map(location -> new ResponseEntity<>(location, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/locations/{id}")
     public ResponseEntity<Void> deleteLocationById(@PathVariable Integer id){
         if(locationService.deleteLocation(id)){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
