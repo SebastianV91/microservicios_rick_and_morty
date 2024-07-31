@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/characters")
 public class CharactersController {
 
     private final CharactersService charactersService;
@@ -19,33 +18,33 @@ public class CharactersController {
         this.charactersService = characterService;
     }
 
-    @PostMapping("/")
+    @PostMapping("/characters")
     public ResponseEntity<Characters> createCharacters(@RequestBody Characters characters){
         Characters createdCharacters = charactersService.createCharacters(characters);
         return new ResponseEntity<>(createdCharacters, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/characters/{id}")
     public ResponseEntity<Characters> getCharactersById(@PathVariable Integer id){
         return charactersService.getCharactersById(id)
                 .map(characters -> new ResponseEntity<>(characters, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/getAllCharacters")
+    @GetMapping("/characters")
     public ResponseEntity<List<Characters>> getAllCharacters(){
         List<Characters> characters = charactersService.getAllCharacters();
         return new ResponseEntity<>(characters, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/characters/{id}")
     public ResponseEntity<Characters> updateCharacters(@PathVariable Integer id, @RequestBody Characters updatedCharacters){
         return charactersService.updateCharacters(id,  updatedCharacters)
                 .map(characters -> new ResponseEntity<>(characters, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/characters/{id}")
     public ResponseEntity<Void> deleteCharactersById(@PathVariable Integer id){
         if(charactersService.deleteCharacters(id)){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
